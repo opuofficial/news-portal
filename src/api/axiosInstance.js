@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
   },
   params: {
     country: "in",
+    pageSize: 10,
   },
 });
 
