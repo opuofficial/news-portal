@@ -14,6 +14,11 @@ function NewsCard() {
       <div className="text-lg font-semibold mt-2 text-slate-800">
         Messi, Argentina set to defend Copa America title
       </div>
+      <div className="text-sm text-slate-500 mt-1">
+        The 2024 Copa America will be only the second to feature 16 teams in
+        four groups, with six guest teams from CONCACAF participating in
+        CONMEBOL's continental championship.
+      </div>
       <div className="flex items-center justify-between mt-4">
         <div className="text-sm text-slate-500">22 mins ago</div>
         <div>
