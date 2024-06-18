@@ -7,7 +7,7 @@ function Pagination() {
         <button className="border border-slate-200 py-1 px-3 rounded-md">
           Prev
         </button>
-        <button className="border border-slate-200 py-1 px-3 rounded-md bg-blue-500 text-white">
+        <button className="border border-slate-200 py-1 px-3 rounded-md bg-blue-950 text-white">
           1
         </button>
         <button className="border border-slate-200 py-1 px-3 rounded-md">

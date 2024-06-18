@@ -12,7 +12,7 @@ function SearchBox() {
           placeholder="Looking for Something?"
         />
         <button
-          className="bg-blue-500
+          className="bg-blue-950
          text-white 
          font-semibold 
          py-1 

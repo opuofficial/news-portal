@@ -1,16 +1,35 @@
 import "./App.css";
-import Categories from "./components/categories";
-import Navbar from "./components/navbar";
-import NewsSection from "./components/newsSection";
-import SearchBox from "./components/searchBox";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./Layout";
+import LatestUpdates from "./components/latestUpdates";
+import FavoriteNews from "./components/favoriteNews";
+import SearchResult from "./components/searchResult";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <LatestUpdates />,
+      },
+      {
+        path: "favorite",
+        element: <FavoriteNews />,
+      },
+      {
+        path: "search",
+        element: <SearchResult />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <>
-      <Navbar />
-      <SearchBox />
-      <Categories />
-      <NewsSection />
+      <RouterProvider router={router} />
     </>
   );
 }

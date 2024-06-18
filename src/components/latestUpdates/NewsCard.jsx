@@ -19,7 +19,7 @@ function NewsCard() {
         <div>
           <FontAwesomeIcon
             icon={faHeart}
-            className="text-blue-500 cursor-pointer text-xl"
+            className="text-blue-950 cursor-pointer text-xl"
           />
         </div>
       </div>
