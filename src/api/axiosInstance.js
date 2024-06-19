@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
   params: {
-    country: "in",
     pageSize: 10,
   },
 });

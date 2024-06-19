@@ -1,31 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 
-export const fetchLatestNews = createAsyncThunk(
-  "latestNews/fetchLatestNews",
+export const fetchPopularNews = createAsyncThunk(
+  "latestNews/fetchPopularNews",
   async () => {
-    const res = await axiosInstance.get("/top-headlines?country=in");
+    const res = await axiosInstance.get(
+      "/everything?language=en&sortBy=popularity&q=technology"
+    );
     return res.data;
   }
 );
 
-const latestNewsSlice = createSlice({
-  name: "latestNews",
+const popularNewsSlice = createSlice({
+  name: "popularNews",
   initialState: {
     isLoading: false,
     data: {},
     error: null,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchLatestNews.pending, (state) => {
+    builder.addCase(fetchPopularNews.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchLatestNews.fulfilled, (state, action) => {
+    builder.addCase(fetchPopularNews.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
       state.error = null;
     });
-    builder.addCase(fetchLatestNews.rejected, (state, action) => {
+    builder.addCase(fetchPopularNews.rejected, (state, action) => {
       state.isLoading = false;
       state.data = {};
       state.error = action.error.message;
@@ -33,4 +35,4 @@ const latestNewsSlice = createSlice({
   },
 });
 
-export default latestNewsSlice.reducer;
+export default popularNewsSlice.reducer;
