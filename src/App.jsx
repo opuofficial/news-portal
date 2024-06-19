@@ -4,6 +4,10 @@ import Layout from "./Layout";
 import LatestUpdates from "./components/latestUpdates";
 import FavoriteNews from "./components/favoriteNews";
 import SearchResult from "./components/searchResult";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import favoriteArticles from "./favoriteArticles";
+import { setFavoriteArticles } from "./features/news/favoriteArticlesSlice";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +31,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+
+  const retriveFavoriteArticles = async () => {
+    const data = await favoriteArticles.getAllArticles();
+    dispatch(setFavoriteArticles(data));
+  };
+
+  useEffect(() => {
+    retriveFavoriteArticles();
+  }, []);
+
   return (
     <>
       <RouterProvider router={router} />

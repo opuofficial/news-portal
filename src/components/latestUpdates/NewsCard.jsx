@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { formatDistanceToNow } from "date-fns";
+import favoriteArticles from "../../favoriteArticles";
+import { useDispatch, useSelector } from "react-redux";
+import { addArticleUrl } from "../../features/news/favoriteArticlesSlice";
 
 function NewsCard({ article }) {
+  const dispatch = useDispatch();
   const { description, publishedAt, title, url, urlToImage } = article;
+  const { articlesUrl } = useSelector((state) => state.favoriteArticles);
 
+  const [favorite, setFavorite] = useState(() => {
+    return articlesUrl.includes(url);
+  });
   const date = new Date(publishedAt);
   const relativeTime = formatDistanceToNow(date, { addSuffix: true });
+
+  const addToFavorite = async () => {
+    await favoriteArticles.addArticle(article);
+    setFavorite(true);
+    dispatch(addArticleUrl(url));
+  };
+
+  const toggleFavorite = () => {
+    if (favorite) {
+      setFavorite(false);
+    } else {
+      addToFavorite();
+    }
+  };
 
   return (
     <div className="rounded-lg p-3 shadow mb-3">
@@ -22,9 +45,9 @@ function NewsCard({ article }) {
       </a>
       <div className="flex items-center justify-between mt-4">
         <div className="text-sm text-slate-500">{relativeTime}</div>
-        <div>
+        <div className="p-2" onClick={toggleFavorite}>
           <FontAwesomeIcon
-            icon={faHeart}
+            icon={favorite ? heartSolid : heartRegular}
             className="text-blue-950 cursor-pointer text-xl"
           />
         </div>
