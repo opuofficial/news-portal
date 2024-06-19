@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -12,11 +12,14 @@ function NewsCard({ article }) {
   const { description, publishedAt, title, url, urlToImage } = article;
   const { articlesUrl } = useSelector((state) => state.favoriteArticles);
 
-  const [favorite, setFavorite] = useState(() => {
-    return articlesUrl.includes(url);
-  });
+  const [favorite, setFavorite] = useState(false);
   const date = new Date(publishedAt);
   const relativeTime = formatDistanceToNow(date, { addSuffix: true });
+
+  useEffect(() => {
+    const isFavorite = articlesUrl.includes(url);
+    setFavorite(isFavorite);
+  }, [dispatch]);
 
   const addToFavorite = async () => {
     await favoriteArticles.addArticle(article);

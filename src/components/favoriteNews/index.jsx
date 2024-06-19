@@ -7,8 +7,6 @@ function FavoriteNews() {
 
   const getFavoriteArticles = async () => {
     const results = await favoriteArticles.getAllArticles();
-    console.log(results);
-
     setArticles(results);
   };
 
