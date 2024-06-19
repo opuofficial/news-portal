@@ -9,8 +9,6 @@ function NewsCard({ article }) {
   const date = new Date(publishedAt);
   const relativeTime = formatDistanceToNow(date, { addSuffix: true });
 
-  console.log(urlToImage);
-
   return (
     <div className="rounded-lg p-3 shadow mb-3">
       <a href={url} target="_blank">
