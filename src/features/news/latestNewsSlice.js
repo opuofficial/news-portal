@@ -12,10 +12,15 @@ export const fetchLatestNews = createAsyncThunk(
 const latestNewsSlice = createSlice({
   name: "latestNews",
   initialState: {
+    currentPage: 1,
+    articlesPerPage: 10,
+    totalResults: null,
+    totalPage: null,
     isLoading: false,
     data: {},
     error: null,
   },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchLatestNews.pending, (state) => {
       state.isLoading = true;
@@ -23,6 +28,8 @@ const latestNewsSlice = createSlice({
     builder.addCase(fetchLatestNews.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      state.totalResults = state.data.totalResults;
+      state.totalPage = Math.ceil(state.totalResults / state.articlesPerPage);
       state.error = null;
     });
     builder.addCase(fetchLatestNews.rejected, (state, action) => {

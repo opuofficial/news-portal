@@ -9,7 +9,10 @@ function LatestUpdates() {
   const latestNews = useSelector((state) => {
     return state.latestNews;
   });
-  const { isLoading, data, error } = latestNews;
+
+  console.log(latestNews);
+
+  const { isLoading, data, error, currentPage, totalPage } = latestNews;
 
   const dispatch = useDispatch();
 
@@ -30,7 +33,7 @@ function LatestUpdates() {
       ) : (
         <>
           <p className="text-right text-sm text-slate-500 mb-3">
-            Showing page 1 of 3
+            Showing page {currentPage} of {totalPage}
           </p>
 
           <div className="latest-news-container">
