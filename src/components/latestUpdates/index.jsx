@@ -10,14 +10,12 @@ function LatestUpdates() {
     return state.latestNews;
   });
 
-  console.log(latestNews);
-
   const { isLoading, data, error, currentPage, totalPage } = latestNews;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchLatestNews());
+    dispatch(fetchLatestNews({ page: 1 }));
   }, []);
 
   return (

@@ -1,19 +1,80 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchLatestNews,
+  setCurrentPage,
+} from "../../features/news/latestNewsSlice";
 
 function Pagination() {
+  const { currentPage, totalPage } = useSelector((state) => {
+    return state.latestNews;
+  });
+
+  const dispatch = useDispatch();
+
+  let paginationButtons = [];
+
+  for (let i = 1; i <= totalPage; i++) {
+    paginationButtons.push(i);
+  }
+
+  const handlePaginationButtonClick = (pageNo) => {
+    scrollToTop();
+    dispatch(fetchLatestNews({ page: pageNo }));
+    dispatch(setCurrentPage(pageNo));
+  };
+
+  const handlePrevPageButtonClick = () => {
+    scrollToTop();
+
+    if (currentPage > 1) {
+      dispatch(fetchLatestNews({ page: currentPage - 1 }));
+      dispatch(setCurrentPage(currentPage - 1));
+    }
+  };
+
+  const handleNextPageButtonClick = () => {
+    scrollToTop();
+
+    if (currentPage < totalPage) {
+      dispatch(fetchLatestNews({ page: currentPage + 1 }));
+      dispatch(setCurrentPage(currentPage + 1));
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="mt-5 mb-16">
       <div className="flex gap-1">
-        <button className="border border-slate-200 py-1 px-3 rounded-md">
+        <button
+          className="border border-slate-200 py-1 px-3 rounded-md"
+          onClick={handlePrevPageButtonClick}
+          disabled={currentPage == 1}
+        >
           Prev
         </button>
-        <button className="border border-slate-200 py-1 px-3 rounded-md bg-blue-950 text-white">
-          1
-        </button>
-        <button className="border border-slate-200 py-1 px-3 rounded-md">
-          2
-        </button>
-        <button className="border border-slate-200 py-1 px-3 rounded-md">
+        {paginationButtons.map((pageNo) => (
+          <button
+            className={`border border-slate-200 py-1 px-3 rounded-md ${
+              pageNo == currentPage ? "bg-blue-950 text-white" : ""
+            }`}
+            key={pageNo}
+            onClick={() => handlePaginationButtonClick(pageNo)}
+          >
+            {pageNo}
+          </button>
+        ))}
+        <button
+          className="border border-slate-200 py-1 px-3 rounded-md"
+          onClick={handleNextPageButtonClick}
+          disabled={currentPage == totalPage}
+        >
           Next
         </button>
       </div>

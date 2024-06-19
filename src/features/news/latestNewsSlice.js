@@ -3,8 +3,10 @@ import axiosInstance from "../../api/axiosInstance";
 
 export const fetchLatestNews = createAsyncThunk(
   "latestNews/fetchLatestNews",
-  async () => {
-    const res = await axiosInstance.get("/top-headlines?country=in");
+  async ({ page }) => {
+    const res = await axiosInstance.get(
+      `/top-headlines?country=in&page=${page}`
+    );
     return res.data;
   }
 );
@@ -20,7 +22,11 @@ const latestNewsSlice = createSlice({
     data: {},
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchLatestNews.pending, (state) => {
       state.isLoading = true;
@@ -41,3 +47,4 @@ const latestNewsSlice = createSlice({
 });
 
 export default latestNewsSlice.reducer;
+export const { setCurrentPage } = latestNewsSlice.actions;
