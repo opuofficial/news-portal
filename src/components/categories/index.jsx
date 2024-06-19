@@ -1,15 +1,54 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchByCategory,
+  selectCategory,
+  setCurrentPage,
+} from "../../features/news/latestNewsSlice";
 
 function Categories() {
+  const { categories, selectedCategory } = useSelector(
+    (state) => state.latestNews
+  );
+
+  const dispatch = useDispatch();
+
+  const handleCategoryChange = (category) => {
+    dispatch(selectCategory(category));
+    dispatch(setCurrentPage(1));
+    dispatch(fetchByCategory({ category, page: 1 }));
+  };
+
   return (
-    <div className="container px-4 max-w-3xl m-auto mt-3">
-      <div className="flex gap-3">
-        <button className="bg-blue-950 text-white font-semibold px-3 py-1 rounded-md">
-          All
+    <div className="container px-4 max-w-3xl m-auto mt-3 mb-5">
+      <div className="flex gap-3 flex-wrap">
+        <button
+          className={`${
+            selectedCategory == "all"
+              ? "bg-blue-950 text-white font-semibold"
+              : ""
+          } px-3 py-1 rounded-md`}
+          onClick={() => {
+            dispatch(selectCategory("all"));
+            dispatch(setCurrentPage(1));
+            dispatch(fetchByCategory({ category: "all", page: 1 }));
+          }}
+        >
+          all
         </button>
-        <button className="px-3 py-1 rounded-md">Business</button>
-        <button className="px-3 py-1 rounded-md">Technology</button>
-        <button className="px-3 py-1 rounded-md">Sports</button>
+        {categories.map((category) => (
+          <button
+            className={`px-3 py-1 rounded-md ${
+              selectedCategory == category
+                ? "bg-blue-950 text-white font-semibold"
+                : ""
+            }`}
+            key={category}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {category}
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import {
 } from "../../features/news/latestNewsSlice";
 
 function Pagination() {
-  const { currentPage, totalPage } = useSelector((state) => {
+  const { currentPage, totalPage, selectedCategory } = useSelector((state) => {
     return state.latestNews;
   });
 
@@ -20,7 +20,7 @@ function Pagination() {
 
   const handlePaginationButtonClick = (pageNo) => {
     scrollToTop();
-    dispatch(fetchLatestNews({ page: pageNo }));
+    dispatch(fetchLatestNews({ page: pageNo, category: selectedCategory }));
     dispatch(setCurrentPage(pageNo));
   };
 
@@ -28,7 +28,9 @@ function Pagination() {
     scrollToTop();
 
     if (currentPage > 1) {
-      dispatch(fetchLatestNews({ page: currentPage - 1 }));
+      dispatch(
+        fetchLatestNews({ page: currentPage - 1, category: selectedCategory })
+      );
       dispatch(setCurrentPage(currentPage - 1));
     }
   };
@@ -37,7 +39,9 @@ function Pagination() {
     scrollToTop();
 
     if (currentPage < totalPage) {
-      dispatch(fetchLatestNews({ page: currentPage + 1 }));
+      dispatch(
+        fetchLatestNews({ page: currentPage + 1, category: selectedCategory })
+      );
       dispatch(setCurrentPage(currentPage + 1));
     }
   };

@@ -15,7 +15,7 @@ function LatestUpdates() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchLatestNews({ page: 1 }));
+    dispatch(fetchLatestNews({ page: 1, category: "all" }));
   }, []);
 
   return (
