@@ -5,7 +5,10 @@ import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { formatDistanceToNow } from "date-fns";
 import favoriteArticles from "../../favoriteArticles";
 import { useDispatch, useSelector } from "react-redux";
-import { addArticleUrl } from "../../features/news/favoriteArticlesSlice";
+import {
+  addArticleUrl,
+  removeArticleUrl,
+} from "../../features/news/favoriteArticlesSlice";
 
 function NewsCard({ article }) {
   const dispatch = useDispatch();
@@ -27,9 +30,15 @@ function NewsCard({ article }) {
     dispatch(addArticleUrl(url));
   };
 
+  const removeFromFavorite = async () => {
+    await favoriteArticles.removeFromFavorite(url);
+    setFavorite(false);
+    dispatch(removeArticleUrl(url));
+  };
+
   const toggleFavorite = () => {
     if (favorite) {
-      setFavorite(false);
+      removeFromFavorite();
     } else {
       addToFavorite();
     }

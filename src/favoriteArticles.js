@@ -17,8 +17,8 @@ class FavoriteArticles {
       request.onupgradeneeded = (event) => {
         const db = event.target.result;
         db.createObjectStore("articles", {
-          keyPath: "id",
-          autoIncrement: true,
+          keyPath: "url",
+          autoIncrement: false,
         });
       };
 
@@ -74,7 +74,7 @@ class FavoriteArticles {
     });
   }
 
-  async removeFromFavorite(id) {
+  async removeFromFavorite(url) {
     if (!this.dbInstance) {
       await this.openDB();
     }
@@ -85,7 +85,7 @@ class FavoriteArticles {
         "readwrite"
       );
       const objectStore = transaction.objectStore("articles");
-      const request = objectStore.delete(id);
+      const request = objectStore.delete(url);
 
       request.onerror = (event) => {
         this.error = event.target.error;
