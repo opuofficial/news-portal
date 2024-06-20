@@ -13,7 +13,7 @@ function Footer() {
             <div>
               <p className="mb-2">Download our app</p>
               <div className="flex gap-2 border px-3 py-1 rounded-md items-center">
-                <img src="/public/images/playstore.png" alt="" />
+                <img src="/images/playstore.png" alt="" />
                 <div className="font-semibold">
                   <p className="text-sm uppercase">Get it on</p>
                   <p>Google Play</p>
