@@ -14,8 +14,6 @@ function SearchResult() {
   const dispatch = useDispatch();
   const { isLoading, data, error, currentPage, totalPage } = news;
 
-  console.log(data);
-
   useEffect(() => {
     dispatch(fetchBySearchQuery({ query, page: currentPage }));
   }, []);
