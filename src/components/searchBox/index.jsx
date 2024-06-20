@@ -6,8 +6,18 @@ function SearchBox() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleSearchButtonClick = () => {
+  const goToSearchPage = () => {
     navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+  };
+
+  const handleSearchButtonClick = () => {
+    goToSearchPage();
+  };
+
+  const handleEnterButtonClick = (event) => {
+    if (event.key == "Enter") {
+      goToSearchPage();
+    }
   };
 
   useEffect(() => {
@@ -27,6 +37,7 @@ function SearchBox() {
           placeholder="Looking for Something?"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyUp={handleEnterButtonClick}
         />
         <button
           className="bg-blue-950
