@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NewsCard from "../latestUpdates/NewsCard";
+import NewsCard from "../newsCard";
 import favoriteArticles from "../../favoriteArticles";
 
 function FavoriteNews() {

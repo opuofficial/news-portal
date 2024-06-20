@@ -1,5 +1,4 @@
 import React from "react";
-import NewsCard from "../latestUpdates/NewsCard";
 
 function SearchResult() {
   return (
@@ -8,7 +7,7 @@ function SearchResult() {
 
       <div className="search-result-container">
         {/* <CardSkeleton /> */}
-        <NewsCard />
+        {/* <NewsCard /> */}
       </div>
     </div>
   );

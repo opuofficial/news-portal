@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import NewsCard from "./NewsCard";
-import CardSkeleton from "./CardSkeleton";
+import CardSkeleton from "../newsCard/CardSkeleton";
 import Pagination from "../pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLatestNews } from "../../features/news/newsSlice";
+import NewsCard from "../newsCard";
 
 function LatestUpdates() {
   const latestNews = useSelector((state) => {
