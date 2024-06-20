@@ -5,7 +5,7 @@ export const fetchPopularNews = createAsyncThunk(
   "latestNews/fetchPopularNews",
   async () => {
     const res = await axiosInstance.get(
-      "/everything?language=en&sortBy=popularity&q=technology"
+      "/popular-headlines?language=en&sortBy=popularity&q=technology"
     );
     return res.data;
   }

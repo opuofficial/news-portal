@@ -18,7 +18,7 @@ export const fetchLatestNews = createAsyncThunk(
 export const fetchByCategory = createAsyncThunk(
   "news/fetchByCategory",
   async ({ category, page }) => {
-    let endpoint = `/top-headlines?country=in&page=${page}`;
+    let endpoint = `/article-category?country=in&page=${page}`;
 
     if (category && category != "all") {
       endpoint += `&category=${category}`;
@@ -32,7 +32,7 @@ export const fetchByCategory = createAsyncThunk(
 export const fetchBySearchQuery = createAsyncThunk(
   "news/fetchBySearchQuery",
   async ({ query, page }) => {
-    let endpoint = `/everything?q=${query}&page=${page}`;
+    let endpoint = `/search?q=${query}&page=${page}`;
 
     const res = await axiosInstance.get(endpoint);
     return res.data;
