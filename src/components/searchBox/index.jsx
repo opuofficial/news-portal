@@ -1,13 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function SearchBox() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearchButtonClick = () => {
     navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
   };
+
+  useEffect(() => {
+    if (location.pathname != "/search") {
+      setSearchQuery("");
+    }
+  }, [location]);
 
   return (
     <div className="container px-4 max-w-3xl m-auto mt-5">
