@@ -7,6 +7,10 @@ function SearchBox() {
   const location = useLocation();
 
   const goToSearchPage = () => {
+    if (searchQuery.trim() == "") {
+      return;
+    }
+
     navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
   };
 
