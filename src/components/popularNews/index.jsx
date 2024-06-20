@@ -18,7 +18,7 @@ function PopularNews() {
   }, []);
 
   return (
-    <div className="pl-2.5">
+    <div className="md:pl-2.5">
       <h3 className="text-2xl mb-2">Popular News</h3>
 
       <div className="popular-news-container">
