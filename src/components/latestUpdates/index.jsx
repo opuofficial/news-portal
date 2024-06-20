@@ -6,11 +6,11 @@ import { fetchLatestNews } from "../../features/news/newsSlice";
 import NewsCard from "../newsCard";
 
 function LatestUpdates() {
-  const latestNews = useSelector((state) => {
+  const news = useSelector((state) => {
     return state.news;
   });
 
-  const { isLoading, data, error, currentPage, totalPage } = latestNews;
+  const { isLoading, data, error, currentPage, totalPage } = news;
 
   const dispatch = useDispatch();
 

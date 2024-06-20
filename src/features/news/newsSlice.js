@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 
 export const fetchLatestNews = createAsyncThunk(
-  "latestNews/fetchLatestNews",
+  "news/fetchLatestNews",
   async ({ page, category }) => {
     let endpoint = `/top-headlines?country=in&page=${page}`;
 
@@ -16,13 +16,23 @@ export const fetchLatestNews = createAsyncThunk(
 );
 
 export const fetchByCategory = createAsyncThunk(
-  "latestNews/fetchByCategory",
+  "news/fetchByCategory",
   async ({ category, page }) => {
     let endpoint = `/top-headlines?country=in&page=${page}`;
 
     if (category && category != "all") {
       endpoint += `&category=${category}`;
     }
+
+    const res = await axiosInstance.get(endpoint);
+    return res.data;
+  }
+);
+
+export const fetchBySearchQuery = createAsyncThunk(
+  "news/fetchBySearchQuery",
+  async ({ query, page }) => {
+    let endpoint = `/everything?q=${query}&page=${page}`;
 
     const res = await axiosInstance.get(endpoint);
     return res.data;
@@ -85,6 +95,22 @@ const newsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchByCategory.rejected, (state, action) => {
+      state.isLoading = false;
+      state.data = {};
+      state.error = action.error.message;
+    });
+
+    builder.addCase(fetchBySearchQuery.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchBySearchQuery.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+      state.totalResults = state.data.totalResults;
+      state.totalPage = Math.ceil(state.totalResults / state.articlesPerPage);
+      state.error = null;
+    });
+    builder.addCase(fetchBySearchQuery.rejected, (state, action) => {
       state.isLoading = false;
       state.data = {};
       state.error = action.error.message;

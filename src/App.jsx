@@ -35,7 +35,6 @@ function App() {
 
   const retriveFavoriteArticles = async () => {
     const data = await favoriteArticles.getAllArticles();
-    console.log(data);
     const urls = data.map((article) => article.url);
     dispatch(setFavoriteArticles(urls));
   };
