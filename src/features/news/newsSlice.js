@@ -29,8 +29,8 @@ export const fetchByCategory = createAsyncThunk(
   }
 );
 
-const latestNewsSlice = createSlice({
-  name: "latestNews",
+const newsSlice = createSlice({
+  name: "news",
   initialState: {
     currentPage: 1,
     articlesPerPage: 10,
@@ -92,5 +92,5 @@ const latestNewsSlice = createSlice({
   },
 });
 
-export default latestNewsSlice.reducer;
-export const { setCurrentPage, selectCategory } = latestNewsSlice.actions;
+export default newsSlice.reducer;
+export const { setCurrentPage, selectCategory } = newsSlice.actions;

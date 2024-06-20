@@ -3,11 +3,11 @@ import NewsCard from "./NewsCard";
 import CardSkeleton from "./CardSkeleton";
 import Pagination from "../pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLatestNews } from "../../features/news/latestNewsSlice";
+import { fetchLatestNews } from "../../features/news/newsSlice";
 
 function LatestUpdates() {
   const latestNews = useSelector((state) => {
-    return state.latestNews;
+    return state.news;
   });
 
   const { isLoading, data, error, currentPage, totalPage } = latestNews;

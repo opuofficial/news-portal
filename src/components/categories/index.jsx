@@ -4,12 +4,10 @@ import {
   fetchByCategory,
   selectCategory,
   setCurrentPage,
-} from "../../features/news/latestNewsSlice";
+} from "../../features/news/newsSlice";
 
 function Categories() {
-  const { categories, selectedCategory } = useSelector(
-    (state) => state.latestNews
-  );
+  const { categories, selectedCategory } = useSelector((state) => state.news);
 
   const dispatch = useDispatch();
 

@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchLatestNews,
-  setCurrentPage,
-} from "../../features/news/latestNewsSlice";
+import { fetchLatestNews, setCurrentPage } from "../../features/news/newsSlice";
 
 function Pagination() {
   const { currentPage, totalPage, selectedCategory } = useSelector((state) => {
-    return state.latestNews;
+    return state.news;
   });
 
   const dispatch = useDispatch();

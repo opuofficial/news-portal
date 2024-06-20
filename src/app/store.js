@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import latestNewsReducer from "../features/news/latestNewsSlice";
+import newsSliceReducer from "../features/news/newsSlice";
 import popularNewsReducer from "../features/news/popularNewsSlice";
 import favoriteArticlesReducer from "../features/news/favoriteArticlesSlice";
 
 const store = configureStore({
   reducer: {
-    latestNews: latestNewsReducer,
+    news: newsSliceReducer,
     popularNews: popularNewsReducer,
     favoriteArticles: favoriteArticlesReducer,
   },
