@@ -10,7 +10,6 @@ function Layout() {
     <>
       <Navbar />
       <SearchBox />
-      <Categories />
       <NewsSection />
       <Footer />
     </>

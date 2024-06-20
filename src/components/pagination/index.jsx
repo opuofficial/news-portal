@@ -52,7 +52,7 @@ function Pagination() {
 
   return (
     <div className="mt-5 mb-16">
-      <div className="flex gap-1">
+      <div className="flex gap-1 flex-wrap">
         <button
           className="border border-slate-200 py-1 px-3 rounded-md"
           onClick={handlePrevPageButtonClick}
