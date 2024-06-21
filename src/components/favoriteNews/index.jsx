@@ -22,6 +22,11 @@ function FavoriteNews() {
       </h3>
 
       <div className="favorite-news-container">
+        {articles.length == 0 && (
+          <div className="text-slate-500 text-2xl font-light mb-10 md:mb-0">
+            You don't have any favorites
+          </div>
+        )}
         {articles.map((article) => (
           <NewsCard article={article} key={article.url} />
         ))}
