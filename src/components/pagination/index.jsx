@@ -11,7 +11,9 @@ function Pagination() {
 
   let paginationButtons = [];
 
-  for (let i = 1; i <= totalPage; i++) {
+  const totalNumberOfPages = totalPage > 7 ? 7 : totalPage;
+
+  for (let i = 1; i <= totalNumberOfPages; i++) {
     paginationButtons.push(i);
   }
 
