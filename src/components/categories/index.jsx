@@ -12,6 +12,10 @@ function Categories() {
   const dispatch = useDispatch();
 
   const handleCategoryChange = (category) => {
+    if (category == selectedCategory) {
+      return;
+    }
+
     dispatch(selectCategory(category));
     dispatch(setCurrentPage(1));
     dispatch(fetchByCategory({ category, page: 1 }));
