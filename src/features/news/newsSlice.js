@@ -47,6 +47,7 @@ const newsSlice = createSlice({
     totalResults: null,
     totalPage: null,
     categories: [
+      "all",
       "business",
       "entertainment",
       "general",

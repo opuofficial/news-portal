@@ -24,20 +24,6 @@ function Categories() {
   return (
     <div className="container px-4 max-w-3xl m-auto mt-3 mb-5">
       <div className="flex gap-3 flex-wrap">
-        <button
-          className={`${
-            selectedCategory == "all"
-              ? "bg-blue-950 text-white font-semibold"
-              : ""
-          } px-3 py-1 rounded-md`}
-          onClick={() => {
-            dispatch(selectCategory("all"));
-            dispatch(setCurrentPage(1));
-            dispatch(fetchByCategory({ category: "all", page: 1 }));
-          }}
-        >
-          all
-        </button>
         {categories.map((category) => (
           <button
             className={`px-3 py-1 rounded-md ${
