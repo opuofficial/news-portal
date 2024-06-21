@@ -12,7 +12,12 @@ function SearchResult() {
     return state.news;
   });
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isLoading, data, error, currentPage, totalPage } = news;
+
+  useEffect(() => {
+    dispatch(fetchBySearchQuery({ query, page: currentPage }));
+  }, [location.search]);
 
   useEffect(() => {
     dispatch(fetchBySearchQuery({ query, page: currentPage }));
